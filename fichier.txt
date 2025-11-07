@@ -1,0 +1,41 @@
+use admin
+1)
+// a) Administrateur avec rôle dbAdmin
+--------------------------------------
+
+db.createUser({
+  user: "administrateur",
+  pwd: "khdx379",      
+  roles: [{ role: "dbAdmin", db: "admin" }]
+})
+
+// b) Utilisateur avec rôle userAdmin
+------------------------------------------
+db.createUser({
+  user: "utilisateur",
+  pwd: "mjlo436",
+  roles: [{ role: "userAdmin", db: "admin" }]
+})
+
+// c) Visiteur avec rôle read
+-------------------------------------------
+db.createUser({
+  user: "visiteur",
+  pwd: "hkuh657",
+  roles: [{ role: "read", db: "admin" }]
+})
+
+
+---------------------------------------------------------
+//2)
+--------------------------------------------------------
+mongo -u visiteur -p hkuh657 --authenticationDatabase admin
+
+
+use admin
+//3)
+-------------------------------------------------------------
+
+db.dropUser("administrateur")
+db.dropUser("utilisateur")
+db.dropUser("visiteur")
