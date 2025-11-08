@@ -10,7 +10,9 @@ commandes = db["commandes"]
 
 
 def creer_commande(client_nom, produits_list, statut="en cours"):
-    montant_total = sum(item["prix"] * item["quantite"] for item in produits_list)
+    montant_total = 0
+    for p in produits_list:
+        montant_total += p["prix"] * p["quantite"]
 
     commande = {
         "client": client_nom,
@@ -19,7 +21,6 @@ def creer_commande(client_nom, produits_list, statut="en cours"):
         "statut": statut,
         "montant_total": montant_total
     }
-
     commandes.insert_one(commande)
     print("Commande ajoutée avec succès !")
 
